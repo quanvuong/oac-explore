@@ -23,8 +23,8 @@ ray.init(
     logging_level=logging.WARNING,
 
     # The amount of memory (in bytes)
-    object_store_memory=1073741824, # 1g
-    redis_max_memory=1073741824 # 1g
+    object_store_memory=1073741824,  # 1g
+    redis_max_memory=1073741824  # 1g
 )
 
 
@@ -145,10 +145,6 @@ def get_cmd_args():
     parser.add_argument('--no_gpu', default=False, action='store_true')
     parser.add_argument('--base_log_dir', type=str, default='./data')
 
-    # optimistic_exp_hyper_param
-    parser.add_argument('--beta_UB', type=float, default=0.0)
-    parser.add_argument('--delta', type=float, default=0.0)
-
     # Training param
     parser.add_argument('--num_expl_steps_per_train_loop',
                         type=int, default=1000)
@@ -167,8 +163,6 @@ def get_log_dir(args, should_include_base_log_dir=True, should_include_seed=True
         # Algo kwargs portion
         f'num_expl_steps_per_train_loop_{args.num_expl_steps_per_train_loop}_num_trains_per_train_loop_{args.num_trains_per_train_loop}'
 
-        # optimistic exploration dependent portion
-        f'beta_UB_{args.beta_UB}_delta_{args.delta}',
     )
 
     if should_include_domain:
